@@ -17,8 +17,8 @@ export function Footer() {
   ];
 
   const contactInfo = [
-    { icon: Mail, text: "ahmad.hassan@example.com" },
-    { icon: MessageSquare, text: "+1 (555) 123-4567" },
+    { icon: Mail, text: "39ahmadhassan@gmail.com" },
+    { icon: MessageSquare, text: "+92 303 0853614" },
     { icon: MapPin, text: "San Francisco, CA" },
   ];
 

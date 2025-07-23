@@ -57,13 +57,13 @@ export function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "ahmad.hassan@example.com",
+      value: "39ahmadhassan@gmail.com",
       color: "bg-primary",
     },
     {
       icon: MessageSquare,
       title: "WhatsApp",
-      value: "+1 (555) 123-4567",
+      value: "+92 303 0853614",
       color: "bg-accent",
     },
     {

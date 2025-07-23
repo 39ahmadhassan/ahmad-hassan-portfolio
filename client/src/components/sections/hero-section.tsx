@@ -2,30 +2,43 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
+import img from "../../assets/img/logo.jpg";
 export function HeroSection() {
   const { toast } = useToast();
 
-  const handleDownloadResume = async () => {
-    try {
-      const response = await fetch("/api/resume");
-      const data = await response.json();
+  // const handleDownloadResume = async () => {
+  //   try {
+  //     const response = await fetch("/api/resume");
+  //     const data = await response.json();
       
-      if (data.success) {
-        toast({
-          title: "Resume Download",
-          description: "Your resume download will begin shortly.",
-        });
-        // In a real implementation, this would trigger a file download
-      }
-    } catch (error) {
-      toast({
-        title: "Download Error",
-        description: "Failed to download resume. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
+  //     if (data.success) {
+  //       toast({
+  //         title: "Resume Download",
+  //         description: "Your resume download will begin shortly.",
+  //       });
+  //       // In a real implementation, this would trigger a file download
+  //     }
+  //   } catch (error) {
+  //     toast({
+  //       title: "Download Error",
+  //       description: "Failed to download resume. Please try again.",
+  //       variant: "destructive",
+  //     });
+  //   }
+  // };
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Ahmad_Hassan_Resume.pdf"; // desired file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  
+    toast({
+      title: "Resume Download",
+      description: "Your resume download has started.",
+    });
+  };  
 
   const scrollToProjects = () => {
     const element = document.getElementById("projects");
@@ -46,7 +59,7 @@ export function HeroSection() {
           className="animate-float mb-8"
         >
           <img 
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400" 
+            src={img} 
             alt="Ahmad Hassan - Software Engineer" 
             className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white shadow-2xl object-cover"
           />
