@@ -50,7 +50,6 @@ export function HeroSection() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
-      
       <div className="relative z-10 text-center text-white px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +72,6 @@ export function HeroSection() {
         >
           Hi, I'm Ahmad Hassan
         </motion.h1>
-        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
