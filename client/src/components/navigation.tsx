@@ -40,7 +40,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-dark">Ahmad Hassan</span>
+            <span className="text-xl font-bold text-primary">Ahmad Hassan</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -51,6 +51,7 @@ export function Navigation() {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className="text-foreground/80 hover:text-primary transition-colors duration-200"
+                  data-testid={`nav-${item.id}`}
                 >
                   {item.label}
                 </button>
@@ -64,6 +65,7 @@ export function Navigation() {
               size="icon"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="rounded-full"
+              data-testid="button-theme-toggle"
             >
               {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </Button>
@@ -74,6 +76,7 @@ export function Navigation() {
               size="icon"
               className="md:hidden rounded-full"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              data-testid="button-mobile-menu"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -89,6 +92,7 @@ export function Navigation() {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className="block w-full text-left px-3 py-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+                  data-testid={`nav-mobile-${item.id}`}
                 >
                   {item.label}
                 </button>

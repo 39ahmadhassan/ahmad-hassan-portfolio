@@ -6,20 +6,25 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { insertContactSchema } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
 import { Mail, MessageSquare, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 import { z } from "zod";
 
-type ContactFormData = z.infer<typeof insertContactSchema>;
+// Frontend-only contact schema
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactSection() {
   const { toast } = useToast();
 
   const form = useForm<ContactFormData>({
-    resolver: zodResolver(insertContactSchema),
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -28,42 +33,26 @@ export function ContactSection() {
     },
   });
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return response.json();
-    },
-    onSuccess: (data) => {
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
   const onSubmit = (data: ContactFormData) => {
-    contactMutation.mutate(data);
+    // Simulate form submission for demo purposes
+    toast({
+      title: "Message Received!",
+      description: "Thank you for your message. This is a demo portfolio - in a real implementation, the message would be sent to Ahmad Hassan.",
+    });
+    form.reset();
   };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      value: "39ahmadhassan@gmail.com",
+      value: "ahmad.hassan@example.com",
       color: "bg-primary",
     },
     {
       icon: MessageSquare,
       title: "WhatsApp",
-      value: "+92 303 0853614",
+      value: "+1 (555) 123-4567",
       color: "bg-accent",
     },
     {
@@ -218,9 +207,9 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={contactMutation.isPending}
+                    data-testid="button-send-message"
                   >
-                    {contactMutation.isPending ? "Sending..." : "Send Message"}
+                    Send Message
                   </Button>
                 </form>
               </CardContent>
