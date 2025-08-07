@@ -46,7 +46,6 @@ export function HeroSection() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   return (
     <section id="home" className="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
@@ -63,7 +62,6 @@ export function HeroSection() {
             className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white shadow-2xl object-cover"
           />
         </motion.div>
-        
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,7 +78,6 @@ export function HeroSection() {
         >
           Full Stack Developer crafting digital experiences with 3+ years of expertise
         </motion.p>
-        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,7 +102,6 @@ export function HeroSection() {
           </Button>
         </motion.div>
       </div>
-      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
